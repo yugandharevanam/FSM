@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 // Import components
@@ -7,9 +7,15 @@ import AppRoutes from "./routes";
 import LoginScreen from "./components/Pages/LoginScreen";
 import SafeAreaView from "./components/SafeAreaView";
 import { ThemeProvider } from "./context/ThemeContext";
+import preventZoom from "./utils/preventZoom";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Prevent zooming and double-tap gestures on mobile
+  useEffect(() => {
+    preventZoom();
+  }, []);
 
   const handleLogin = () => {
     setIsAuthenticated(true);
