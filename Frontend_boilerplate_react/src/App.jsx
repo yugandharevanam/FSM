@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import AppRoutes from "./routes";
 import LoginScreen from "./components/Pages/LoginScreen";
+import SafeAreaView from "./components/SafeAreaView";
 import { ThemeProvider } from "./context/ThemeContext";
 
 const App = () => {
@@ -29,18 +30,39 @@ const App = () => {
   if (!isAuthenticated) {
     return (
       <ThemeProvider>
-        <LoginScreen onLogin={handleLogin} />
+        <SafeAreaView 
+          fullScreen={true} // Full-screen mode for login
+          style={{
+            backgroundColor: '#1a1a1a',
+            color: '#ffffff',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center'
+          }}
+        >
+          <LoginScreen onLogin={handleLogin} />
+        </SafeAreaView>
       </ThemeProvider>
     );
   }
 
   return (
     <ThemeProvider>
-      <Router>
-        <Layout>
-          <AppRoutes user={user} onLogout={handleLogout} />
-        </Layout>
-      </Router>
+      <SafeAreaView 
+        excludeBottom={true} // Exclude bottom padding since TabBar handles it
+        style={{
+          backgroundColor: '#1a1a1a',
+          color: '#ffffff'
+        }}
+      >
+        <Router>
+          <Layout>
+            <AppRoutes user={user} onLogout={handleLogout} />
+          </Layout>
+        </Router>
+      </SafeAreaView>
     </ThemeProvider>
   );
 };

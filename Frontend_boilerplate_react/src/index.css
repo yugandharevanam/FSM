@@ -172,13 +172,20 @@ input:focus, textarea:focus, select:focus {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: var(--bg-card);
-  border-top: 1px solid var(--border-color);
+  background-color: #000000;
+  border-top: 1px solid #2a2a2a;
   padding: 12px 0 8px 0;
-  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  padding-bottom: max(8 env(safe-area-inset-bottom, 0px));
   z-index: 1000;
   backdrop-filter: blur(10px);
   transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Instagram-like tab bar positioning */
+@media screen and (max-width: 768px) {
+  .tab-bar {
+    padding-bottom: max(calc(env(safe-area-inset-bottom, 0px) * 0.1));
+  }
 }
 
 .tab-item {
@@ -630,4 +637,67 @@ button, .btn, .tab-item {
 /* Theme transition */
 * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* SafeAreaView styles */
+.safe-area-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.safe-area-content {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+/* Flexible SafeAreaView alternative */
+.safe-area-flexible {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Prevent body scrolling when SafeAreaView is active */
+body.safe-area-active {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure viewport meta tag is properly set for safe area support */
+@media screen and (max-width: 768px) {
+  .safe-area-content {
+    /* Additional mobile-specific styles */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  .safe-area-flexible {
+    /* Prevent horizontal scrolling on mobile */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Additional mobile optimizations */
+@media screen and (max-width: 768px) {
+  /* Prevent pull-to-refresh on mobile */
+  body.safe-area-active {
+    overscroll-behavior: none;
+  }
+  
+  /* Smooth scrolling for content areas */
+  .safe-area-content,
+  .safe-area-flexible {
+    scroll-behavior: smooth;
+  }
 }
