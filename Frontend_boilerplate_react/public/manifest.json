@@ -1,0 +1,19 @@
+{
+  "short_name": "EliteConstruct FSM",
+  "name": "EliteConstruct FSM Lift Management",
+  "description": "Field Service Management for Lift Installation and Maintenance",
+  "icons": [
+    {
+      "src": "el-logo.svg",
+      "sizes": "48x48",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#EC363A",
+  "background_color": "#000000",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en"
+} 
