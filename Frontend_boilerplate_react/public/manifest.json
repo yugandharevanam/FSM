@@ -5,8 +5,15 @@
   "icons": [
     {
       "src": "el-logo.svg",
-      "sizes": "48x48",
-      "type": "image/svg+xml"
+      "sizes": "48x48 72x72 96x96 128x128 144x144 168x168 192x192 256x256 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "el-logo.svg",
+      "sizes": "144x144",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
